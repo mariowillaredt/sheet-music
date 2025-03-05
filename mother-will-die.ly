@@ -17,40 +17,23 @@ upper = \relative c'' {
   \clef treble
   
   % Main theme - first section
-  \repeat volta 2 {
-    a2 c4 b4 | }
+   { a2 c4 b4 | a1 }
 }
 
-lower = \relative c {
+low = \relative c' {
   \global
   \clef bass
-  
-  % First section
-  \repeat volta 2 {
-    \new Voice = "first"
-      \relative {\voiceOne r4 <c e>2.}
-    \new Voice = "second"
-      \relative {\voiceTwo a4}
-  }
+    << { r4 <c e>2. | r4 <d f>2. }
+       \\
+       {a1 | b1 } >>
 }
 
 \score {
   \new PianoStaff <<
     \new Staff = "upper" \upper
-    \new Staff << 
-      \relative c {
-        \global
-        \clef bass
-  
-        % First section
-        \repeat volta 2 {
-        \new Voice = "first"
-        \relative {\voiceOne r4 <c e>2.}
-        \new Voice = "second"
-        \relative {\voiceTwo a4}
-  }
-}
-  >>
+    \new Staff = "lower" \low
+>>
+
   \layout { }
   \midi { }
 }
